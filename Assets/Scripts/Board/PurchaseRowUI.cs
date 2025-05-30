@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Game.Managers;
+using Game.Cards;
 using Game.Core;
+using TMPro;
 
 public class PurchaseRowUI : MonoBehaviour
 {
@@ -27,7 +29,7 @@ public class PurchaseRowUI : MonoBehaviour
         {
             var cardData = purchaseRow.Row[i];
             GameObject newCard = Instantiate(cardPrefab, cardContainer);
-            newCard.GetComponentInChildren<Text>().text = cardData.ToString();
+            newCard.GetComponentInChildren<TMP_Text>().text = cardData.ToString();
 
             int index = i;
             newCard.GetComponent<Button>().onClick.AddListener(() => BuyCard(index));
@@ -36,7 +38,7 @@ public class PurchaseRowUI : MonoBehaviour
 
     private void BuyCard(int index)
     {
-        var player = GameManager.Instance.Player1; 
+        var player = GameManager.Instance.Player1;
         var card = purchaseRow.BuyCardAt(index);
 
         if (card != null && player.BuyCell(card))

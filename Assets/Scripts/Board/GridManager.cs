@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Game.GridSystem;
 using Game.Utils;
 using UnityEngine;
+using Game.Players;
 
 namespace Game.Managers
 {
@@ -10,6 +11,13 @@ namespace Game.Managers
         [SerializeField] private Cell cellPrefab; 
 
         private Dictionary<string, Cell> grid;
+
+        public Player Player1;
+        public PurchaseRow purchaseRow;
+        public PurchaseRowUI purchaseRowUI;
+        public GridManager gridManager;
+
+        
 
         private void Awake()
         {
@@ -21,10 +29,15 @@ namespace Game.Managers
                 newCell.Initialize(id);
 
                 Vector2Int coords = BoardIDs.IdToCoords(id);
-                newCell.transform.localPosition = new Vector3(coords.x, -coords.y, 0); 
+                newCell.transform.localPosition = new Vector3(coords.x, 0f, coords.y);
 
                 grid.Add(id, newCell);
             }
+        }
+        void Start()
+        {
+            purchaseRow = new PurchaseRow(this);
+            purchaseRowUI.Initialize(purchaseRow);
         }
 
         public Cell GetCell(string id)
@@ -33,5 +46,6 @@ namespace Game.Managers
         }
 
         public Dictionary<string, Cell> GetAllCells() => grid;
+
     }
 }

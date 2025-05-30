@@ -16,20 +16,29 @@ namespace Game.Managers
         public PurchaseRow(GridManager gridManager)
         {
             this.gridManager = gridManager;
-            deck = new Queue<string>(BoardIDs.GenerateCellIds());
+            var ids = BoardIDs.GenerateCellIds();
+            Shuffle(ids);
+            deck = new Queue<string>(ids); 
             row = new List<CellCard>();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++) 
                 DrawNextCard();
         }
-
+        private void Shuffle<T>(List<T> list)
+        {
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = UnityEngine.Random.Range(0, i + 1);
+                (list[i], list[j]) = (list[j], list[i]);
+            }
+        }
         private void DrawNextCard()
         {
             if (deck.Count == 0) return;
 
             string nextId = deck.Dequeue();
             Cell cell = gridManager.GetCell(nextId);
-            if (cell != null)
+            if (cell != null && !cell.IsOwned)
             {
                 int cost = row.Count + 1;
                 row.Add(new CellCard(cell, cost));
@@ -49,7 +58,6 @@ namespace Game.Managers
 
         private void ShiftLeftAndAddNew()
         {
-            
             for (int i = 0; i < row.Count; i++)
             {
                 row[i] = new CellCard(row[i].Cell, i + 1);

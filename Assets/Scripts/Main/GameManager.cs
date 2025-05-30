@@ -28,8 +28,6 @@ namespace Game.Core
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            GridManager = new GridManager();
-            PurchaseRow = new PurchaseRow(GridManager);
 
             Player1 = new Player("Jugador 1");
             Player2 = new Player("Jugador 2");
