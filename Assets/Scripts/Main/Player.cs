@@ -1,23 +1,32 @@
-using UnityEngine;
+using System.Collections.Generic;
+using Game.GridSystem;
 
-public class Player
+namespace Game.Players
 {
-    private static Player _instance;
-    public static Player Instance => _instance ??= new Player();
-
-    public int Money { get; private set; } = 1000;
-
-    private Player() { }
-
-    public void AddMoney(int amount) => Money += amount;
-
-    public bool SpendMoney(int amount)
+    public class Player
     {
-        if (Money >= amount)
+        public string Name { get; private set; }
+        public int Money { get; set; }
+        public List<Cell> OwnedCells { get; private set; }
+
+        public Player(string name, int startingMoney = 20)
         {
-            Money -= amount;
-            return true;
+            Name = name;
+            Money = startingMoney;
+            OwnedCells = new List<Cell>();
         }
-        return false;
+
+        public bool BuyCell(CellCard card)
+        {
+            if (Money >= card.Cost && !card.Cell.IsOwned)
+            {
+                Money -= card.Cost;
+                card.Cell.IsOwned = true;
+                OwnedCells.Add(card.Cell);
+                return true;
+            }
+
+            return false;
+        }
     }
 }
