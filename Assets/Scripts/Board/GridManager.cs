@@ -1,20 +1,29 @@
 using System.Collections.Generic;
 using Game.GridSystem;
 using Game.Utils;
+using UnityEngine;
 
 namespace Game.Managers
 {
-    public class GridManager
+    public class GridManager : MonoBehaviour
     {
+        [SerializeField] private Cell cellPrefab; 
+
         private Dictionary<string, Cell> grid;
 
-        public GridManager()
+        private void Awake()
         {
             grid = new Dictionary<string, Cell>();
 
             foreach (string id in BoardIDs.GenerateCellIds())
             {
-                grid.Add(id, new Cell(id));
+                Cell newCell = Instantiate(cellPrefab, transform);
+                newCell.Initialize(id);
+
+                Vector2Int coords = BoardIDs.IdToCoords(id);
+                newCell.transform.localPosition = new Vector3(coords.x, -coords.y, 0); 
+
+                grid.Add(id, newCell);
             }
         }
 

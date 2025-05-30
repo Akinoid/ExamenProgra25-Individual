@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
 namespace Game.Utils
 {
     public static class BoardIDs
@@ -18,6 +19,22 @@ namespace Game.Utils
             }
 
             return ids;
+        }
+
+        public static Vector2Int IdToCoords(string id)
+        {
+            char row = id[0];
+            int col = int.Parse(id.Substring(1));
+            int y = row - 'A';
+            int x = col - 1;
+            return new Vector2Int(x, y);
+        }
+
+        public static string CoordsToId(Vector2Int coords)
+        {
+            char row = (char)('A' + coords.y);
+            int col = coords.x + 1;
+            return $"{row}{col}";
         }
     }
 }
