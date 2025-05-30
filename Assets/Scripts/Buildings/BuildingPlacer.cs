@@ -18,52 +18,45 @@ namespace Game.Managers
 
         public bool TryPlaceBuilding(Player player, string originCellId, Building building)
         {
-            
             Cell origin = gridManager.GetCell(originCellId);
             if (origin == null) return false;
 
-           
             Vector2Int originPos = BoardIDs.IdToCoords(originCellId);
 
-            
-            
             List<string> requiredCellIds = new List<string>();
 
-            
             foreach (Vector2Int offset in building.GetRelativePositions())
             {
                 Vector2Int pos = originPos + offset;
                 string cellId = BoardIDs.CoordsToId(pos);
 
-                
                 if (!gridManager.GetAllCells().ContainsKey(cellId))
                     return false;
 
                 requiredCellIds.Add(cellId);
             }
 
-            
             if (!player.OwnsCells(requiredCellIds))
                 return false;
 
-            
             List<Cell> targetCells = new List<Cell>();
             foreach (var id in requiredCellIds)
             {
                 Cell cell = gridManager.GetCell(id);
-                if (cell != null)
-                {
-                    targetCells.Add(cell);
-                }
-                else
-                {
-                    
+                if (cell == null)
                     return false;
-                }
+                targetCells.Add(cell);
             }
 
-            
             player.PlaceBuilding(building, targetCells);
+
+            Vector3 worldPos = origin.transform.position;
+
+            GameObject visual = GameObject.Instantiate(gridManager.buildingVisualPrefab);
+            visual.transform.position = worldPos;
+
+            var visualScript = visual.GetComponent<BuildingVisual>();
+            visualScript.Initialize(building);
 
             return true;
         }

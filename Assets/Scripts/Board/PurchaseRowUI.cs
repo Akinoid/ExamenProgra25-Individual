@@ -38,7 +38,7 @@ public class PurchaseRowUI : MonoBehaviour
 
     private void BuyCard(int index)
     {
-        var player = GameManager.Instance.Player1;
+        var player = GameManager.Instance.CurrentPlayer;
         var card = purchaseRow.BuyCardAt(index);
 
         if (card != null && player.BuyCell(card))

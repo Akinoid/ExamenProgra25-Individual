@@ -1,23 +1,22 @@
 using System.Collections.Generic;
 using Game.GridSystem;
-using Game.Utils;
-using UnityEngine;
 using Game.Players;
+using UnityEngine;
+using Game.Managers;
+using Game.Utils;
 
 namespace Game.Managers
 {
     public class GridManager : MonoBehaviour
     {
-        [SerializeField] private Cell cellPrefab; 
+        [SerializeField] private Cell cellPrefab;
+        [SerializeField] public GameObject buildingVisualPrefab;
 
         private Dictionary<string, Cell> grid;
 
         public Player Player1;
         public PurchaseRow purchaseRow;
         public PurchaseRowUI purchaseRowUI;
-        public GridManager gridManager;
-
-        
 
         private void Awake()
         {
@@ -34,7 +33,8 @@ namespace Game.Managers
                 grid.Add(id, newCell);
             }
         }
-        void Start()
+
+        private void Start()
         {
             purchaseRow = new PurchaseRow(this);
             purchaseRowUI.Initialize(purchaseRow);
@@ -46,6 +46,5 @@ namespace Game.Managers
         }
 
         public Dictionary<string, Cell> GetAllCells() => grid;
-
     }
 }

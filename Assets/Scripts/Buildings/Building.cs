@@ -8,8 +8,6 @@ namespace Game.Buildings
         public string Name { get; private set; }
         public int Income { get; private set; }
         public int Population { get; private set; }
-
-      
         public List<Vector2Int> Shape { get; private set; }
 
         public Building(string name, int income, int population, List<Vector2Int> shape)
@@ -20,7 +18,6 @@ namespace Game.Buildings
             Shape = shape;
         }
 
-       
         public List<Vector2Int> GetRelativePositions()
         {
             return new List<Vector2Int>(Shape);

@@ -1,40 +1,38 @@
-using UnityEngine;
 using System.Collections.Generic;
-
+using UnityEngine;
 
 namespace Game.Utils
 {
     public static class BoardIDs
     {
-        public static List<string> GenerateCellIds(int width = 10, int height = 10)
+        public static List<string> GenerateCellIds()
         {
             List<string> ids = new List<string>();
-
-            for (char row = 'A'; row < 'A' + height; row++)
+            char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
+            for (int row = 0; row < 10; row++)
             {
-                for (int col = 1; col <= width; col++)
+                for (int col = 1; col <= 10; col++)
                 {
-                    ids.Add($"{row}{col}");
+                    ids.Add($"{letters[row]}{col}");
                 }
             }
-
             return ids;
         }
 
         public static Vector2Int IdToCoords(string id)
         {
-            char row = id[0];
-            int col = int.Parse(id.Substring(1));
-            int y = row - 'A';
-            int x = col - 1;
+            char letter = id[0];
+            int number = int.Parse(id.Substring(1));
+            int x = number - 1;
+            int y = letter - 'A';
             return new Vector2Int(x, y);
         }
 
         public static string CoordsToId(Vector2Int coords)
         {
-            char row = (char)('A' + coords.y);
-            int col = coords.x + 1;
-            return $"{row}{col}";
+            char letter = (char)('A' + coords.y);
+            int number = coords.x + 1;
+            return $"{letter}{number}";
         }
     }
 }

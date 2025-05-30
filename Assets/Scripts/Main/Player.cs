@@ -7,15 +7,22 @@ namespace Game.Players
 {
     public class Player
     {
+        private static int playerCount = 0;
+        private int playerId;
+
         public string Name { get; private set; }
         public int Money { get; set; }
         public int Population { get; set; }
 
         public List<Cell> OwnedCells { get; private set; }
+        public List<Building> AvailableBuildings { get; set; }
         public List<Building> PlacedBuildings { get; private set; }
 
         public Player(string name, int startingMoney = 20)
         {
+            playerCount++;
+            playerId = playerCount;
+
             Name = name;
             Money = startingMoney;
             Population = 0;
@@ -23,10 +30,16 @@ namespace Game.Players
             PlacedBuildings = new List<Building>();
         }
 
+        public int GetPlayerId()
+        {
+            return playerId;
+        }
+
         public bool HasCell(string id)
         {
             return OwnedCells.Exists(c => c.Id == id);
         }
+
         public bool OwnsCells(List<string> cellIds)
         {
             foreach (var id in cellIds)
@@ -42,11 +55,10 @@ namespace Game.Players
             if (Money >= card.Cost && !card.Cell.IsOwned)
             {
                 Money -= card.Cost;
-                card.Cell.IsOwned = true;
+                card.Cell.SetOwner(GetPlayerId());
                 OwnedCells.Add(card.Cell);
                 return true;
             }
-
             return false;
         }
 
@@ -65,7 +77,7 @@ namespace Game.Players
             {
                 if (OwnedCells.Contains(cell))
                 {
-                    cell.PlaceBuilding(building); 
+                    cell.PlaceBuilding(building);
                 }
             }
 
