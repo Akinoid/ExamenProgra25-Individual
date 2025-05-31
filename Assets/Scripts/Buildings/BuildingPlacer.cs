@@ -48,7 +48,9 @@ namespace Game.Managers
                 targetCells.Add(cell);
             }
 
-            player.PlaceBuilding(building, targetCells);
+           
+            bool placed = player.PlaceBuilding(building, targetCells);
+            if (!placed) return false;
 
             Vector3 worldPos = origin.transform.position;
 

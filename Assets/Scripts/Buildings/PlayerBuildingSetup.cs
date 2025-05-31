@@ -7,6 +7,21 @@ public static class PlayerBuildingSetup
     public static List<Building> GetDefaultBuildings()
     {
         var buildings = new List<Building>();
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #1", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #2", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #3", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #4", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #5", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #6", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #7", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #8", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #9", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #10", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #11", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #12", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #13", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #14", 7, 10));
+        buildings.Add(BuildingFactory.CreateSingleCellBuilding("Basic 1x1 #15", 7, 10));
 
         buildings.Add(BuildingFactory.CreateTwoByTwoBuilding("Building 2x2 #1", 5, 3));
         buildings.Add(BuildingFactory.CreateTwoByTwoBuilding("Building 2x2 #2", 5, 3));
@@ -59,5 +74,8 @@ public static class PlayerBuildingSetup
         buildings.Add(BuildingFactory.CreateLShapedBuilding("Building L #2", 4, 2));
 
         return buildings;
+
     }
+
+
 }

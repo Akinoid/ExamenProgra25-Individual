@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Game.GridSystem;
 using Game.Cards;
 using Game.Buildings;
+using UnityEngine;
 
 namespace Game.Players
 {
@@ -16,6 +17,7 @@ namespace Game.Players
 
         public List<Cell> OwnedCells { get; private set; }
         public List<Building> AvailableBuildings { get; set; }
+        public Dictionary<string, int> AvailableBuildingsDict { get; private set; }
         public List<Building> PlacedBuildings { get; private set; }
 
         public Player(string name, int startingMoney = 20)
@@ -28,6 +30,14 @@ namespace Game.Players
             Population = 0;
             OwnedCells = new List<Cell>();
             PlacedBuildings = new List<Building>();
+
+            AvailableBuildings = PlayerBuildingSetup.GetDefaultBuildings();
+            AvailableBuildingsDict = new Dictionary<string, int>();
+            var defaultBuildings = PlayerBuildingSetup.GetDefaultBuildings();
+            foreach (var building in defaultBuildings)
+            {                
+                AvailableBuildingsDict.Add(building.Name, 1);
+            }
         }
 
         public int GetPlayerId()
@@ -64,6 +74,7 @@ namespace Game.Players
 
         public void ApplyBuildingEffects(Building building)
         {
+
             Money += building.Income;
             Population += building.Population;
             if (Population > 100) Population = 100;
@@ -71,8 +82,15 @@ namespace Game.Players
             PlacedBuildings.Add(building);
         }
 
-        public void PlaceBuilding(Building building, List<Cell> targetCells)
+        public bool PlaceBuilding(Building building, List<Cell> targetCells)
         {
+            if (!AvailableBuildingsDict.ContainsKey(building.Name) || AvailableBuildingsDict[building.Name] <= 0)
+            {
+                Debug.LogWarning("No quedan edificios de este tipo para colocar");
+                return false;
+            }
+            
+            
             foreach (var cell in targetCells)
             {
                 if (OwnedCells.Contains(cell))
@@ -81,7 +99,16 @@ namespace Game.Players
                 }
             }
 
+            
             ApplyBuildingEffects(building);
+
+            
+            
+
+            // Descontar edificio disponible
+            AvailableBuildingsDict[building.Name]--;
+
+            return true;
         }
 
         public int CalculateIncome()
