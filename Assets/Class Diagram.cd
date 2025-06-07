@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Game.Utils.BoardIDs" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\BoardIDs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.GridSystem.Cell" Collapsed="true">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJCAAIIIAAABQAEAAAAAACAAAAAQAgAAAAAEAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\Cell.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="OccupiedBuilding" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Game.Cards.CellCard">
+    <Position X="11.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAABAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\CellCard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cell" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Game.Managers.GridManager">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAACIAAAAAgAgAAAAAAAAgAAAAAAAEAAAIAEA=</HashCode>
+      <FileName>Assets\Scripts\Board\GridManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Player1" />
+      <Field Name="purchaseRow" />
+      <Field Name="purchaseRowUI" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Game.Managers.PurchaseRow">
+    <Position X="2" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAACAAAAAAABAAGAAAAAkAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\Board\PurchaseRow.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gridManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PurchaseRowUI">
+    <Position X="2" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAIAAAAQAAAAAAIAAAAAAAAACAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Board\PurchaseRowUI.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="purchaseRow" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Game.Players.Player" Collapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAQAgCACAABAAALAAAALAQAAAAAAAAEAAAAEAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Main\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.Buildings.Building" Collapsed="true">
+    <Position X="11" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAsAAAAAAQAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Buildings\Building.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.Buildings.BuildingFactory" Collapsed="true">
+    <Position X="11" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Buildings\BuildingFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.Managers.BuildingPlacer" Collapsed="true">
+    <Position X="5.5" Y="7.5" Width="1.5" />
+    <AssociationLine Name="gridManager" Type="Game.Managers.GridManager" FixedFromPoint="true">
+      <Path>
+        <Point X="6.5" Y="7.5" />
+        <Point X="6.5" Y="6.146" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Buildings\BuildingPlacer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gridManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BuildingSelectionUI" Collapsed="true">
+    <Position X="16" Y="4.25" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="BuildingSelectionUI.OnBuildingSelected" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Buildings\BuildingSelectionUI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAgAAAIAQAAAAACAAAAAAABAADAAAAAAAAAAAE=</HashCode>
+      <FileName>Assets\Scripts\Buildings\BuildingSelectionUI.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="currentPlayer" />
+      <Field Name="selectedBuilding" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Game.Buildings.BuildingVisual" Collapsed="true">
+    <Position X="14" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Buildings\BuildingVisual.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerBuildingSetup" Collapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Buildings\PlayerBuildingSetup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameInfoUI" Collapsed="true">
+    <Position X="7.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAACAAAAAAAAAgAAgAAAEAAAAAEAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interfaces\GameInfoUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.Core.GameManager" Collapsed="true">
+    <Position X="9" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Game.Core.GameManager.TurnPhase" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Main\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CCYAAAAAAiAAAAIEwAABkAAABgAAAACAQBAAiAAAAFA=</HashCode>
+      <FileName>Assets\Scripts\Main\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="currentPlayer" />
+      <Field Name="gameInfoUI" />
+      <Field Name="gridManagerObject" />
+      <Property Name="CurrentPlayer" />
+      <Property Name="Instance" />
+      <Property Name="Player1" />
+      <Property Name="Player2" />
+      <Property Name="PurchaseRow" />
+      <Property Name="GridManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
